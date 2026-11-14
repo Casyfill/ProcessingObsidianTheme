@@ -14,6 +14,11 @@ body {
 	display: none;
 }
 
+/* TODO(review): this global rule also restyles plugin SVGs (Mermaid,
+   Excalidraw, charts). Limit it to Obsidian's own icons (e.g. `.svg-icon *`),
+   then explore whether Mermaid/Excalidraw can gracefully adopt the square
+   style — only if possible without fragile selectors.
+   See docs/research-popular-themes.md. */
 svg * {
 	stroke-linecap: square;
 	stroke-linejoin: miter;
