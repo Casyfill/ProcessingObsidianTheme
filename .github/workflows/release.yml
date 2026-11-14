@@ -1,0 +1,47 @@
+name: Release Obsidian theme
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+
+      - name: Check tag matches manifest version
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          version="$(node -p "require('./manifest.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "Tag '$tag' does not match manifest.json version '$version'"
+            exit 1
+          fi
+          node -e "if (!require('./versions.json')['$version']) { console.error('versions.json has no entry for $version'); process.exit(1) }"
+
+      - name: Create draft release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          prerelease=""
+          case "$tag" in 0.*) prerelease="--prerelease" ;; esac
+
+          gh release create "$tag" \
+            --title="$tag" \
+            --generate-notes \
+            --draft $prerelease \
+            manifest.json theme.css
