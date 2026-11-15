@@ -25,7 +25,7 @@ All values must keep meeting ADR 00 §4 (WCAG AA, 4.5:1 for text).
 |---|---|---|---|
 | Accent (`--interactive-accent`) | `#0564FF` | `#3884FF` | today's Processing blue |
 | Link text (`--text-accent`) | `#0564FF` | `#6EA4FF` | the dark value is lightened to pass AA |
-| Note (`--background-primary`) | `#FFFFFF` | `#20233E` (indigo–slate) | indigo moved 60% toward slate, at the owner's request; to be confirmed |
+| Note (`--background-primary`) | `#FFFFFF` | `#20233E` (indigo–slate) | indigo moved 60% toward slate; confirmed by the owner |
 | Sidebars (`--background-secondary`) | `#E8EFFF` | `#16182A` | |
 | Title bar, tab bar, ribbon | `#0F195A` | `#141B42` | processing.org `--processing-blue-dark` |
 | Text / muted | `#1E1E1E` / `#5F5F5F` | `#E8E8E8` / `#A8A8A8` | |
@@ -85,6 +85,7 @@ All values must keep meeting ADR 00 §4 (WCAG AA, 4.5:1 for text).
 - The checked checkbox rotated −6°.
 - A faint dot grid behind the graph and Canvas, at 4% alpha or less.
 - A subtle title effect: an under-1px offset of Processing light blue and Run red (`#FF5757`) on the inline title.
+- **Handbook background pattern.** An original generative SVG, embedded as a `data:` URI, in the spirit of the Handbook cover: translucent circles and a point network. It sits faintly behind the graph canvas and on the empty "No file is open" tab. It must be our own drawing, not a copy of the cover art.
 
 ### 6. Selectors this ADR explicitly accepts
 
@@ -105,10 +106,8 @@ No selector may target a translated `aria-label`.
 
 ## Not decided yet
 
-1. **Dark note colour:** whether to keep indigo–slate `#20233E` or go back to indigo `#1D1F45`.
-2. **Handbook background pattern (proposal).** An original generative SVG, embedded as a `data:` URI, in the spirit of the Handbook cover: translucent circles and a point network. It would sit faintly behind the graph canvas and on the empty "No file is open" tab, as an opt-in quirk. It must be our own drawing, not a copy of the cover art.
-3. **Exact selectors** for the circle buttons. They must be verified against a real Obsidian install before implementation.
-4. **Style Settings options:** whether and which; see the popular-themes research. They are deferred until the base theme ships.
+1. **Exact selectors** for the circle buttons. They must be verified against a real Obsidian install before implementation.
+2. **Style Settings options:** whether and which; see the popular-themes research. They are deferred until the base theme ships.
 
 ## Consequences
 
