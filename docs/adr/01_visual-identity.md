@@ -4,7 +4,7 @@
 - **Date:** 2026-11-14
 - **Builds on:** [ADR 00](00_design-principles.md)
 - **Research:** [docs/visual-identity/](../visual-identity/README.md)
-- **Interactive reference:** the "Processing Theme Style Board" artifact (v11). A copy is kept at [docs/visual-identity/style-board.html](../visual-identity/style-board.html).
+- **Interactive reference:** the "Processing Theme Style Board" artifact (v13). A copy is kept at [docs/visual-identity/style-board.html](../visual-identity/style-board.html).
 
 ## Context
 
@@ -25,13 +25,17 @@ All values must keep meeting ADR 00 §4 (WCAG AA, 4.5:1 for text).
 |---|---|---|---|
 | Accent (`--interactive-accent`) | `#0564FF` | `#3884FF` | today's Processing blue |
 | Link text (`--text-accent`) | `#0564FF` | `#6EA4FF` | the dark value is lightened to pass AA |
-| Note (`--background-primary`) | `#FFFFFF` | `#1D1F45` (indigo) | |
+| Note (`--background-primary`) | `#FFFFFF` | `#20233E` (indigo–slate) | indigo moved 60% toward slate, at the owner's request; to be confirmed |
 | Sidebars (`--background-secondary`) | `#E8EFFF` | `#16182A` | |
 | Title bar, tab bar, ribbon | `#0F195A` | `#141B42` | processing.org `--processing-blue-dark` |
 | Text / muted | `#1E1E1E` / `#5F5F5F` | `#E8E8E8` / `#A8A8A8` | |
 | Marker (highlight, selection) | p5 mint `#2DE9B6` at 32% / 40% | the same at 24% / 28% | p5 editor |
 
-- **Graph view:** gray plus one colour, after Fry. The focused node is the accent. Notes, tags, attachments and unresolved links are gray steps, and lines are faint.
+- **Graph view: "Handbook cover".** It is an homage to *Processing: A Programming Handbook for Visual Designers and Artists* (Reas & Fry, MIT Press, 2007).
+  - **Nodes:** translucent blue. Light mode uses `rgba(30,80,180,.38)` and the focused node `rgba(5,100,255,.6)`. Dark mode uses `rgba(130,175,255,.36)`.
+  - **Links:** near-black hairlines, `rgba(20,20,30,.7)` in light mode and `rgba(230,235,255,.6)` in dark.
+  - **Shapes and sizes:** only the colours are set. Obsidian draws the shapes and sizes the nodes by link count, so hub notes become the large circles.
+  - **Fallback:** it is unverified whether Obsidian's graph honours alpha. If it doesn't, fall back to opaque equivalents, or to "gray plus one colour" (Fry).
 - **Callouts and other UI** inherit the accent. There are no extra hues beyond the code palette.
 
 ### 2. Code
@@ -52,11 +56,14 @@ All values must keep meeting ADR 00 §4 (WCAG AA, 4.5:1 for text).
 
 ### 3. Type
 
-- **UI:** Space Grotesk. **Body:** Source Sans 3. **Mono:** Source Code Pro.
-- **Headings:** H1–H6 in mono. The inline title stays sans.
+- **Two font families only:** Space Grotesk and Source Code Pro.
+  - **Space Grotesk:** UI, body text and quotes.
+  - **Source Code Pro:** code, H1–H6 headings and file names. The inline title stays Space Grotesk.
+  - There is no separate code font. Source Sans 3 was dropped because at ≈74 KB it was the largest.
+- **Size:** together the two fonts are ≈57 KB as base64 (Latin subset), against ≈131 KB for the three-font mix. Non-Latin scripts fall back to system fonts unless more glyph ranges are bundled.
 - **Quotes (`>`):** Space Grotesk Light (300), at 1.1em.
-- **Bundling:** all fonts are SIL OFL 1.1 and are bundled as base64 WOFF2, per the rules doc.
-  - Adobe reserves the name "Source". A subset of Source Sans 3 or Source Code Pro must be renamed, as Processing did with "Processing Sans", or the font must ship unsubset.
+- **Bundling:** both fonts are SIL OFL 1.1 and are bundled as base64 WOFF2, per the rules doc.
+  - Adobe reserves the name "Source". The ≈57 KB figure assumes a Latin subset, and under the OFL a subset of Source Code Pro must be renamed (as Processing did with "Processing Sans"), e.g. "Processing Mono". The alternative is shipping Adobe's unmodified file, which is larger; measure it during implementation.
   - Space Grotesk has no reserved name, so it can be subset freely.
 
 ### 4. Shape and lines
@@ -98,16 +105,13 @@ No selector may target a translated `aria-label`.
 
 ## Not decided yet
 
-1. **Code font.** The style board's code-font choice wasn't captured in the generated CSS. Options:
-   - Source Code Pro, the current mono.
-   - IBM Plex Mono, JetBrains Mono, Fira Code, Inconsolata or Space Mono.
-
-   A separate code font means bundling a fourth font.
-2. **Exact selectors** for the circle buttons. They must be verified against a real Obsidian install before implementation.
-3. **Style Settings options:** whether and which; see the popular-themes research. They are deferred until the base theme ships.
+1. **Dark note colour:** whether to keep indigo–slate `#20233E` or go back to indigo `#1D1F45`.
+2. **Handbook background pattern (proposal).** An original generative SVG, embedded as a `data:` URI, in the spirit of the Handbook cover: translucent circles and a point network. It would sit faintly behind the graph canvas and on the empty "No file is open" tab, as an opt-in quirk. It must be our own drawing, not a copy of the cover art.
+3. **Exact selectors** for the circle buttons. They must be verified against a real Obsidian install before implementation.
+4. **Style Settings options:** whether and which; see the popular-themes research. They are deferred until the base theme ships.
 
 ## Consequences
 
-- **Size:** bundling three or four font families will make `theme.css` large. Measure it and subset where the licence allows; this is a top user complaint about popular themes.
+- **Size:** keeping to two families keeps the font payload to about 57 KB. Adding a family needs an amendment that justifies its size.
 - **Fragile selectors:** the circle buttons, quirks and link styling are the parts most likely to break on Obsidian updates. Keep them in clearly marked sections of `theme.css`.
 - **Contrast:** the night code block means syntax colours are tuned against one dark background in both modes, which simplifies the contrast checks.

@@ -205,7 +205,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
 
 <div class="wrap">
   <header class="top">
-    <div class="eyebrow">Processing theme · style board v11</div>
+    <div class="eyebrow">Processing theme · style board v12</div>
     <h1>The theme in a real Obsidian layout</h1>
     <p class="lede">The mock now follows Obsidian's actual desktop layout: tabs in the top bar, the ribbon, the file explorer, the note header, inline title, properties, outline and local graph, and the status bar. Each choice restyles only what a theme can actually change. The <code>theme.css</code> variables it would produce are below the mock.</p>
     <div class="decided" aria-label="Already decided">
@@ -232,6 +232,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
       <fieldset id="font"><legend>7 · Text fonts</legend><div class="opts"></div></fieldset>
       <fieldset id="head"><legend>8 · Headings in monospace?</legend><div class="opts"></div></fieldset>
       <fieldset id="icons"><legend>9 · Icon style</legend><div class="opts"></div></fieldset>
+      <fieldset id="graph"><legend>10 · Graph colours (new: Handbook)</legend><div class="opts"></div><p class="hint">See the local graph in the right sidebar. Handbook enlarges nodes to show the cover feel; in Obsidian, node size follows link count and the user's slider.</p></fieldset>
     </form>
 
     <div>
@@ -460,6 +461,9 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     blues: { label: 'Processing blues', hint: 'Notes deep blue, tags light blue, focus mid blue.', sw: ['#1e32aa', '#82afff'],
       light: ['#1e32aa', '#0564ff', '#82afff', '#b9cdf7', '#d6e0f5', 'rgba(30,50,170,.22)', '#1e32aa'],
       dark:  ['#82afff', '#ffffff', '#3884ff', '#4a5a9a', '#343c66', 'rgba(130,175,255,.22)', '#b8ccff'] },
+    handbook: { label: 'Handbook cover', hint: 'Translucent blue nodes, black hairline links, after the 2007 Processing Handbook cover. Alpha in Obsidian\'s graph is unverified.', sw: ['#5078c0', '#1e1e1e'],
+      light: ['rgba(30,80,180,.38)', 'rgba(5,100,255,.6)', 'rgba(130,175,255,.5)', 'rgba(30,80,180,.26)', 'rgba(30,80,180,.16)', 'rgba(20,20,30,.7)', '#1e1e1e'],
+      dark:  ['rgba(130,175,255,.36)', 'rgba(56,132,255,.65)', 'rgba(130,175,255,.55)', 'rgba(130,175,255,.24)', 'rgba(130,175,255,.14)', 'rgba(230,235,255,.6)', '#c8d2f0'], big: true },
     tri:   { label: 'Three colours', hint: 'Focused note in blue, tags in the marker colour, everything else gray.', sw: ['#0564ff', '#ed225d'],
       light: ['#a3a5af', 'ACC', 'MARK', '#a3a5af', '#c9cad2', 'rgba(15,25,90,.16)', '#5f6170'],
       dark:  ['#6c7088', 'ACC', 'MARK', '#6c7088', '#454a60', 'rgba(219,227,255,.14)', '#9aa0b8'] },
@@ -476,9 +480,12 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     shadow: { label: 'Offset print shadow', hint: 'A soft accent block shadow, 3px down-right.' }
   };
   var FONT = {
-    ide:  { label: 'IDE pair', hint: 'Source Sans 3 + Source Code Pro, shipped in the IDE as "Processing Sans".', ui: '"Source Sans 3"', text: '"Source Sans 3"', head: '"Source Sans 3"', mono: '"Source Code Pro"', quote: '"Source Sans 3"' },
-    site: { label: 'Website trio', hint: 'Space Grotesk + JetBrains Mono, with Vollkorn for quotes.', ui: '"Space Grotesk"', text: '"Space Grotesk"', head: '"Space Grotesk"', mono: '"JetBrains Mono"', quote: 'Vollkorn' },
-    mix:  { label: 'Mix', hint: 'Space Grotesk for UI and headings, Source Sans 3 body, Source Code Pro code.', ui: '"Space Grotesk"', text: '"Source Sans 3"', head: '"Space Grotesk"', mono: '"Source Code Pro"', quote: 'Vollkorn' }
+    duo:   { label: '2 fonts · Space Grotesk + Source Code Pro', hint: '≈57 KB. Space Grotesk for UI, body and quotes; Source Code Pro for code, headings and file names. Drops Source Sans 3, the largest.', ui: '"Space Grotesk"', text: '"Space Grotesk"', head: '"Space Grotesk"', mono: '"Source Code Pro"', quote: '"Space Grotesk"' },
+    space: { label: '2 fonts · Space Grotesk + Space Mono', hint: '≈53 KB. Sibling families: Space Grotesk was drawn from Space Mono. The quirkiest. Space Mono has no semibold, so code is 400 or 700.', ui: '"Space Grotesk"', text: '"Space Grotesk"', head: '"Space Grotesk"', mono: '"Space Mono"', quote: '"Space Grotesk"', monoSize: '12.5px' },
+    web:   { label: '2 fonts · Space Grotesk + JetBrains Mono', hint: '≈70 KB. Exactly the current processing.org pair (minus Vollkorn).', ui: '"Space Grotesk"', text: '"Space Grotesk"', head: '"Space Grotesk"', mono: '"JetBrains Mono"', quote: '"Space Grotesk"' },
+    ide:  { label: '2 fonts · IDE pair', hint: '≈102 KB. Source Sans 3 + Source Code Pro, as shipped in the IDE. Loses Space Grotesk.', ui: '"Source Sans 3"', text: '"Source Sans 3"', head: '"Source Sans 3"', mono: '"Source Code Pro"', quote: '"Source Sans 3"' },
+    site: { label: '3 fonts · Website trio', hint: 'Space Grotesk + JetBrains Mono + Vollkorn for quotes.', ui: '"Space Grotesk"', text: '"Space Grotesk"', head: '"Space Grotesk"', mono: '"JetBrains Mono"', quote: 'Vollkorn' },
+    mix:  { label: '3 fonts · Mix (current pick)', hint: '≈131 KB. Space Grotesk UI and quotes, Source Sans 3 body, Source Code Pro mono.', ui: '"Space Grotesk"', text: '"Source Sans 3"', head: '"Space Grotesk"', mono: '"Source Code Pro"', quote: 'Vollkorn' }
   };
   var FALLBACK = { sans: ', system-ui, sans-serif', mono: ', ui-monospace, monospace', serif: ', Georgia, serif' };
   var SPOTS = {
@@ -517,6 +524,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     night: { label: 'Night block', hint: 'Dark navy block even in light mode, with the dark syntax.', light: '#0f195a', dark: '#0f1430', darkSyntax: true }
   };
   var CFONT = {
+    same:     { label: 'Same as the mono font', hint: 'No extra font: code uses the font set\'s mono (see 7).', fam: null },
     plex:     { label: 'IBM Plex Mono', hint: 'Humanist and warm, with a friendly italic.', fam: '"IBM Plex Mono"' },
     jetbrains:{ label: 'JetBrains Mono', hint: 'The current processing.org code font. Tall and clear.', fam: '"JetBrains Mono"' },
     source:   { label: 'Source Code Pro', hint: 'The PDE 4 editor font. Light and narrow.', fam: '"Source Code Pro"' },
@@ -540,6 +548,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     calm:     { label: 'Calm night', hint: '#1A1C2B, low-saturation blue-gray.', sw: ['#1a1c2b'], o: { primary: '#1a1c2b' } },
     ink:      { label: 'Ink', hint: '#141A33, a deeper blue-black.', sw: ['#141a33'], o: { primary: '#141a33' } },
     indigo:   { label: 'Indigo', hint: '#1D1F45, blue with a little violet.', sw: ['#1d1f45'], o: { primary: '#1d1f45' } },
+    islate:   { label: 'Indigo–slate', hint: '#20233E: indigo, 60% of the way toward slate. Blue but softer.', sw: ['#20233e'], o: { primary: '#20233e' } },
     slate:    { label: 'Slate', hint: '#22263A, grayer and softer.', sw: ['#22263a'], o: { primary: '#22263a' } },
     graphite: { label: 'Graphite', hint: '#1E1E1E, neutral like the PDE editor; lets the blue bars stand out.', sw: ['#1e1e1e'], o: { primary: '#1e1e1e' } }
   };
@@ -574,14 +583,14 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
 
   // defaults = the owner's answers from round 2
   // defaults = the owner's answers from round 4
-  var state = { acc: 'site', chrome: 'deep', font: 'mix', head: 'sans', circles: ['ribbon', 'sidetabs', 'header'], icons: 'obsidian', quirks: ['section', 'monofiles', 'smallcaps', 'roundcb', 'asterisk', 'rotate', 'dots'], rgb: 'run', mark: 'mint', graph: 'fry', code: 'pblue', cw: 'regular', cbg: 'gray', cfont: 'plex', quote: 'grotesk', qline: 'eight', link: 'wired', dnote: 'ink', mode: 'light' };
+  var state = { acc: 'site', chrome: 'deep', font: 'duo', head: 'sections', circles: ['ribbon', 'sidetabs', 'header'], icons: 'hairline', quirks: ['section', 'monofiles', 'smallcaps', 'roundcb', 'asterisk', 'rotate', 'dots'], rgb: 'run', mark: 'mint', graph: 'fry', code: 'pblue', cw: 'semibold', cbg: 'night', cfont: 'same', quote: 'grotesk', qline: 'eight', link: 'marker', dnote: 'islate', mode: 'light' };
   var saved = null;
-  try { saved = JSON.parse(localStorage.getItem('pts8-state') || 'null'); } catch (e) {}
+  try { saved = JSON.parse(localStorage.getItem('pts9-state') || 'null'); } catch (e) {}
   if (saved) { Object.keys(state).forEach(function (k) { if (saved[k] !== undefined) state[k] = saved[k]; }); }
   else { try { if (matchMedia('(prefers-color-scheme: dark)').matches) state.mode = 'dark'; } catch (e) {} }
   // drop keys that no longer exist
-  if (!ACC[state.acc]) state.acc = 'site'; if (!CHROME[state.chrome]) state.chrome = 'deep'; if (!FONT[state.font]) state.font = 'mix'; if (!CODE[state.code]) state.code = 'pblue'; if (!CW[state.cw]) state.cw = 'regular'; if (!QUOTE[state.quote]) state.quote = 'grotesk';
-  if (!CBG[state.cbg]) state.cbg = 'gray'; if (!QLINE[state.qline]) state.qline = 'eight'; if (!CFONT[state.cfont]) state.cfont = 'plex'; if (!LINK[state.link]) state.link = 'wired'; if (!DNOTE[state.dnote]) state.dnote = 'ink'; if (!HEAD[state.head]) state.head = 'sans'; if (!ICONS[state.icons]) state.icons = 'obsidian'; if (!RGB[state.rgb]) state.rgb = 'off'; if (!MARK[state.mark]) state.mark = 'yellow'; if (!GRAPH[state.graph]) state.graph = 'fry';
+  if (!ACC[state.acc]) state.acc = 'site'; if (!CHROME[state.chrome]) state.chrome = 'deep'; if (!FONT[state.font]) state.font = 'duo'; if (!CODE[state.code]) state.code = 'pblue'; if (!CW[state.cw]) state.cw = 'regular'; if (!QUOTE[state.quote]) state.quote = 'grotesk';
+  if (!CBG[state.cbg]) state.cbg = 'gray'; if (!QLINE[state.qline]) state.qline = 'eight'; if (!CFONT[state.cfont]) state.cfont = 'same'; if (!LINK[state.link]) state.link = 'wired'; if (!DNOTE[state.dnote]) state.dnote = 'islate'; if (!HEAD[state.head]) state.head = 'sans'; if (!ICONS[state.icons]) state.icons = 'obsidian'; if (!RGB[state.rgb]) state.rgb = 'off'; if (!MARK[state.mark]) state.mark = 'yellow'; if (!GRAPH[state.graph]) state.graph = 'fry';
   state.circles = state.circles.filter(function (k) { return SPOTS[k]; }); state.quirks = state.quirks.filter(function (k) { return QUIRKS[k]; });
 
   function chips(list) { return '<span class="chips">' + list.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join('') + '</span>'; }
@@ -659,7 +668,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     v['--title-ls'] = state.head === 'all' ? '-.03em' : '-.01em';
     var cw = CW[state.cw], q = QUOTE[state.quote];
     v['--code-w'] = cw.w; v['--code-kw-w'] = cw.kw;
-    var cf = CFONT[state.cfont]; v['--f-code'] = fam(cf.fam, 'mono'); v['--code-size'] = cf.size || '13px';
+    var cf = CFONT[state.cfont]; v['--f-code'] = cf.fam ? fam(cf.fam, 'mono') : fam(f.mono, 'mono'); v['--code-size'] = cf.size || (cf.fam ? null : f.monoSize) || '13px';
     v['--f-quote'] = quoteFam(q, f);
     v['--quote-style'] = q.style; v['--quote-w'] = q.w; v['--quote-size'] = q.size; v['--quote-ls'] = q.ls;
     v['--quote-line'] = QLINE[state.qline].w;
@@ -667,6 +676,10 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     v['--link-soft'] = 'color-mix(in srgb, var(--acc) 38%, transparent)';
     if (dn) v['--bg-primary'] = dn.primary;
     var g = graphOf(state.mode);
+    Array.prototype.forEach.call(mock.querySelectorAll('.graph circle'), function (el) {
+      if (!el.dataset.r) el.dataset.r = el.getAttribute('r');
+      el.setAttribute('r', GRAPH[state.graph].big ? (parseFloat(el.dataset.r) * 2.6).toFixed(1) : el.dataset.r);
+    });
     ['--g-node', '--g-focus', '--g-tag', '--g-att', '--g-unres', '--g-line', '--g-text'].forEach(function (k, i) { v[k] = g[i]; });
     Object.keys(v).forEach(function (k) { mock.style.setProperty(k, v[k]); });
     mock.style.colorScheme = state.mode;
@@ -695,7 +708,7 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     out.push('<span' + (lr < 4.5 ? ' class="bad"' : '') + '>link ' + lr.toFixed(1) + '</span>');
     document.getElementById('ratios').innerHTML = 'contrast: ' + out.join('');
     css(); summary();
-    try { localStorage.setItem('pts8-state', JSON.stringify(state)); } catch (e) {}
+    try { localStorage.setItem('pts9-state', JSON.stringify(state)); } catch (e) {}
   }
 
   var GRAPH_VARS = ['--graph-node', '--graph-node-focused', '--graph-node-tag', '--graph-node-attachment', '--graph-node-unresolved', '--graph-line', '--graph-text'];
@@ -752,7 +765,8 @@ legend { padding: 0; margin-bottom: 6px; font-weight: 700; font-size: 14.5px; }
     var qq = QUOTE[state.quote], cwq = CW[state.cw];
     txt += '\n/* quotes */\n.markdown-rendered blockquote, .HyperMD-quote {\n  font-family: ' + quoteFam(qq, f) + ';\n  font-style: ' + qq.style + '; font-weight: ' + qq.w + '; font-size: ' + qq.size + ';\n}\n';
     txt = txt.replace('/* quotes */\n.markdown-rendered blockquote, .HyperMD-quote {\n', '/* quotes */\n.markdown-rendered blockquote, .HyperMD-quote {\n  border-left-width: ' + QLINE[state.qline].w + ';\n');
-    txt += '\n/* code weight */\n.markdown-rendered pre code, .HyperMD-codeblock {\n  font-weight: ' + cwq.w + ';\n}\n';
+    var cfq = CFONT[state.cfont];
+    txt += '\n/* code */\n.markdown-rendered pre code, .HyperMD-codeblock {\n' + (cfq.fam ? '  font-family: ' + fam(cfq.fam, 'mono') + ';  /* extra bundled font */\n' : '  /* font: --font-monospace-theme (no extra font) */\n') + '  font-weight: ' + cwq.w + ';\n}\n';
     var LK = {
       thin: '',
       thick: '  text-decoration-thickness: 2px;\n  text-underline-offset: 3px;\n',
