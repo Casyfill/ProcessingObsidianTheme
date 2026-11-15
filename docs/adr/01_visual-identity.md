@@ -60,10 +60,10 @@ All values must keep meeting ADR 00 §4 (WCAG AA, 4.5:1 for text).
   - **Space Grotesk:** UI, body text and quotes.
   - **Source Code Pro:** code, H1–H6 headings and file names. The inline title stays Space Grotesk.
   - There is no separate code font. Source Sans 3 was dropped because at ≈74 KB it was the largest.
-- **Size:** together the two fonts are ≈57 KB as base64 (Latin subset), against ≈131 KB for the three-font mix. Non-Latin scripts fall back to system fonts unless more glyph ranges are bundled.
+- **Size:** both fonts ship as the publishers' unmodified variable WOFF2 files, so no rename is needed. Space Grotesk is 49 KB and Source Code Pro (upright) 89 KB, about 185 KB together as base64. Source Code Pro covers Latin, Cyrillic and Greek; Space Grotesk covers Latin and Vietnamese. A renamed Latin subset ("Processing Mono") would bring this to ≈57 KB if size ever matters.
 - **Quotes (`>`):** Space Grotesk Light (300), at 1.1em.
 - **Bundling:** both fonts are SIL OFL 1.1 and are bundled as base64 WOFF2, per the rules doc.
-  - Adobe reserves the name "Source". The ≈57 KB figure assumes a Latin subset, and under the OFL a subset of Source Code Pro must be renamed (as Processing did with "Processing Sans"), e.g. "Processing Mono". The alternative is shipping Adobe's unmodified file, which is larger; measure it during implementation.
+  - Adobe reserves the name "Source", so any subset of Source Code Pro must be renamed, as Processing did with "Processing Sans". The theme ships the unmodified file instead. The OFL text and copyright notices are reproduced in `theme.css`.
   - Space Grotesk has no reserved name, so it can be subset freely.
 
 ### 4. Shape and lines
@@ -111,6 +111,6 @@ No selector may target a translated `aria-label`.
 
 ## Consequences
 
-- **Size:** keeping to two families keeps the font payload to about 57 KB. Adding a family needs an amendment that justifies its size.
+- **Size:** keeping to two families keeps the font payload to about 185 KB, and `theme.css` to about 220 KB. That is well under popular themes' 1–5 MB. Adding a family needs an amendment that justifies its size.
 - **Fragile selectors:** the circle buttons, quirks and link styling are the parts most likely to break on Obsidian updates. Keep them in clearly marked sections of `theme.css`.
 - **Contrast:** the night code block means syntax colours are tuned against one dark background in both modes, which simplifies the contrast checks.
