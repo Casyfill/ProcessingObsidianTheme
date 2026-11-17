@@ -25,15 +25,6 @@ body {
 	--font-text-theme: "Space Grotesk", system-ui, sans-serif;
 	--font-monospace-theme: "Source Code Pro", ui-monospace, monospace;
 
-	/* mono section headings; the inline title stays sans */
-	--h1-font: var(--font-monospace);
-	--h2-font: var(--font-monospace);
-	--h3-font: var(--font-monospace);
-	--h4-font: var(--font-monospace);
-	--h5-font: var(--font-monospace);
-	--h6-font: var(--font-monospace);
-	--inline-title-font: var(--font-interface);
-
 	/* mixed corners: small radii, tabs rounded on top, round checkboxes */
 	--radius-s: 4px;
 	--radius-m: 6px;
@@ -89,11 +80,17 @@ body {
 	--accent-l: 51%;
 	--interactive-accent: #0564ff;
 	--interactive-accent-hover: #0251c8;
-	--text-accent: #0564ff;
+	--text-accent: #0458e0;
 	--text-accent-hover: #0251c8;
 	--text-on-accent: #fff;
-	--background-primary: #fff;
-	--background-secondary: #e8efff;
+	--background-primary: #f5f5f2;
+	--background-secondary: #e6e8ee;
+	--h1-color: #0458e0;
+	--h2-color: #c8185a;
+	--h3-color: #7a3fd1;
+	--h4-color: #00765a;
+	--h5-color: #5f5f5f;
+	--h6-color: #5f5f5f;
 	--text-normal: #1e1e1e;
 	--text-muted: #5f5f5f;
 	--text-faint: #8a8a8a;
@@ -130,6 +127,12 @@ body {
 	--text-on-accent: #fff;
 	--background-primary: #20233e;
 	--background-secondary: #16182a;
+	--h1-color: #6ea4ff;
+	--h2-color: #ff6b9a;
+	--h3-color: #d4b2fe;
+	--h4-color: #2de9b6;
+	--h5-color: #a8a8a8;
+	--h6-color: #a8a8a8;
 	--text-normal: #e8e8e8;
 	--text-muted: #a8a8a8;
 	--text-faint: #7d7f8f;
@@ -279,6 +282,26 @@ body {
 /* checked tasks: a little Molnár disorder */
 .task-list-item-checkbox:checked {
 	rotate: -6deg;
+}
+
+/* half-done `[/]`: half-filled circle, no tick, text not struck through */
+[data-task="/"] {
+	--checklist-done-decoration: none;
+	--checklist-done-color: var(--text-normal);
+}
+
+div[data-task="/"] .task-list-item-checkbox:checked,
+li[data-task="/"] > .task-list-item-checkbox:checked,
+li[data-task="/"] > p > .task-list-item-checkbox:checked {
+	rotate: none;
+	border-color: var(--checkbox-color);
+	background: linear-gradient(90deg, var(--checkbox-color) 50%, transparent 50%);
+}
+
+div[data-task="/"] .task-list-item-checkbox:checked::after,
+li[data-task="/"] > .task-list-item-checkbox:checked::after,
+li[data-task="/"] > p > .task-list-item-checkbox:checked::after {
+	display: none;
 }
 
 /* property keys in small caps, like the old Processing reference */

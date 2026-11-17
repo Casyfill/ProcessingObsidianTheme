@@ -111,7 +111,7 @@ No selector may target a translated `aria-label`.
 
 ## Amendment 1: sans, colour-coded headings and a half-done task
 
-- **Status:** Proposed, 2026-11-17. It awaits the owner's approval and changes nothing in code until then.
+- **Status:** approved by the owner in conversation on 2026-11-17 and implemented. The owner marks it Accepted. The light values were later darkened by Amendment 2.
 - **Why:** after testing in a real vault, the owner wants H1–H6 to match the inline title, with a colour for each level, plus a distinct state for `[/]`.
 
 1. **Headings, replaces §3's "H1–H6 in Source Code Pro":** H1–H6 use Space Grotesk, the same font as the inline title. Source Code Pro keeps code and file names.
@@ -130,6 +130,15 @@ No selector may target a translated `aria-label`.
    - **Implementation:** `--checklist-done-decoration` and `--checklist-done-color` are reset on `[data-task="/"]`.
    - **§6 gains one selector:** `[data-task="/"]` with `.task-list-item-checkbox`.
    - Other custom statuses (`[>]`, `[-]`, …) are out of scope.
+
+## Amendment 2 (trial): softer light mode
+
+- **Status:** trial, requested by the owner on 2026-11-17 ("try something different, we'll see"). Keep it or revert it after vault testing.
+- **Replaces in §1:** the light note `#FFFFFF` becomes `#F5F5F2`, a soft paper grey. The light sidebars `#E8EFFF` (periwinkle) become `#E6E8EE`, a cool slate grey. The navy bars stay.
+- **To stay within AA on the greyer note:**
+  - Light link text and H1 darken to `#0458E0` (5.5).
+  - H2 darkens to `#C8185A` (5.2), H4 to `#00765A` (5.1), and H3 stays `#7A3FD1` (5.6).
+  - The accent `#0564FF` is kept for UI fills only.
 
 ## Consequences
 
