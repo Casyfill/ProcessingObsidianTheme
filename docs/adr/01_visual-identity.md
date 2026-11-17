@@ -140,6 +140,25 @@ No selector may target a translated `aria-label`.
   - H2 darkens to `#C8185A` (5.2), H4 to `#00765A` (5.1), and H3 stays `#7A3FD1` (5.6).
   - The accent `#0564FF` is kept for UI fills only.
 
+## Amendment 3: heading order, lilac callouts, round callouts, bolder light trial
+
+- **Status:** requested by the owner on 2026-11-17 and implemented. The owner marks it Accepted.
+- **Headings, replaces the table in Amendment 1:**
+
+  | Level | Light | Dark |
+  |---|---|---|
+  | H1 | normal text | normal text (white) |
+  | H2 | bright Processing blue `#0564FF` | `#3884FF` |
+  | H3 | Processing green `#3E7209` | PDE green `#58A10B` |
+  | H4 | mint `#00765A` | `#2DE9B6` |
+  | H5 | lilac `#7A3FD1` | `#D4B2FE` |
+  | H6 | muted text | muted text |
+
+  H2 uses the bright accent, so it relies on the large-text AA threshold of 3:1. It measures 4.35 in light and 4.31 in dark. Every other level passes 4.5.
+- **Callouts, replaces §1's "callouts inherit the accent":** the default, info and todo callouts are lilac (`122, 63, 209` in light, `212, 178, 254` in dark). Warning, danger and the other types keep Obsidian's semantic colours.
+- **Callout radius:** `--callout-radius` is 14px, as round as the circle buttons.
+- **Light trial, replaces Amendment 2's values:** the note is `#F2F1EC` (paper) and the sidebars are `#D7DCE6` (stone slate). Both are more visibly off white and off blue than the first trial.
+
 ## Consequences
 
 - **Size:** keeping to two families keeps the font payload to about 185 KB, and `theme.css` to about 220 KB. That is well under popular themes' 1–5 MB. Adding a family needs an amendment that justifies its size.
