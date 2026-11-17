@@ -109,6 +109,28 @@ No selector may target a translated `aria-label`.
 1. **Exact selectors** for the circle buttons. They must be verified against a real Obsidian install before implementation.
 2. **Style Settings options:** whether and which; see the popular-themes research. They are deferred until the base theme ships.
 
+## Amendment 1: sans, colour-coded headings and a half-done task
+
+- **Status:** Proposed, 2026-11-17. It awaits the owner's approval and changes nothing in code until then.
+- **Why:** after testing in a real vault, the owner wants H1–H6 to match the inline title, with a colour for each level, plus a distinct state for `[/]`.
+
+1. **Headings, replaces §3's "H1–H6 in Source Code Pro":** H1–H6 use Space Grotesk, the same font as the inline title. Source Code Pro keeps code and file names.
+2. **Heading colours, an exception to §1's "no extra hues":** each level gets a hue taken from the code palette. On white, each hue is darkened to pass AA. Contrast was computed against the note background.
+
+   | Level | Light (on `#FFFFFF`) | Dark (on `#20233E`) | Source |
+   |---|---|---|---|
+   | H1 | `#0564FF` (4.9) | `#6EA4FF` (6.1) | Processing blue |
+   | H2 | `#D81B60` (5.0) | `#FF6B9A` (5.7) | p5 pink |
+   | H3 | `#7A3FD1` (6.1) | `#D4B2FE` (8.5) | lilac |
+   | H4 | `#00805F` (4.9) | `#2DE9B6` (9.8) | p5 mint |
+   | H5, H6 | `#5F5F5F` (6.4) | `#A8A8A8` (6.4) | muted text |
+
+   They are set only through `--h1-color` to `--h6-color`.
+3. **Half-done task `[/]`:** the round checkbox is half filled in the accent, with the left half solid, and has no tick or rotation. The line keeps normal text, with no strike-through or fading.
+   - **Implementation:** `--checklist-done-decoration` and `--checklist-done-color` are reset on `[data-task="/"]`.
+   - **§6 gains one selector:** `[data-task="/"]` with `.task-list-item-checkbox`.
+   - Other custom statuses (`[>]`, `[-]`, …) are out of scope.
+
 ## Consequences
 
 - **Size:** keeping to two families keeps the font payload to about 185 KB, and `theme.css` to about 220 KB. That is well under popular themes' 1–5 MB. Adding a family needs an amendment that justifies its size.
