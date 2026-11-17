@@ -29,6 +29,7 @@ body {
 	--radius-s: 4px;
 	--radius-m: 6px;
 	--radius-l: 8px;
+	--callout-radius: 14px; /* as round as the circle buttons */
 	--tab-radius-active: 6px 6px 0 0;
 	--checkbox-radius: 50%;
 
@@ -83,14 +84,17 @@ body {
 	--text-accent: #0458e0;
 	--text-accent-hover: #0251c8;
 	--text-on-accent: #fff;
-	--background-primary: #f5f5f2;
-	--background-secondary: #e6e8ee;
-	--h1-color: #0458e0;
-	--h2-color: #c8185a;
-	--h3-color: #7a3fd1;
+	--background-primary: #f2f1ec;
+	--background-secondary: #d7dce6;
+	--h1-color: var(--text-normal);
+	--h2-color: #0564ff;
+	--h3-color: #3e7209;
 	--h4-color: #00765a;
-	--h5-color: #5f5f5f;
+	--h5-color: #7a3fd1;
 	--h6-color: #5f5f5f;
+	--callout-default: 122, 63, 209;
+	--callout-info: 122, 63, 209;
+	--callout-todo: 122, 63, 209;
 	--text-normal: #1e1e1e;
 	--text-muted: #5f5f5f;
 	--text-faint: #8a8a8a;
@@ -127,12 +131,15 @@ body {
 	--text-on-accent: #fff;
 	--background-primary: #20233e;
 	--background-secondary: #16182a;
-	--h1-color: #6ea4ff;
-	--h2-color: #ff6b9a;
-	--h3-color: #d4b2fe;
+	--h1-color: var(--text-normal);
+	--h2-color: #3884ff;
+	--h3-color: #58a10b;
 	--h4-color: #2de9b6;
-	--h5-color: #a8a8a8;
+	--h5-color: #d4b2fe;
 	--h6-color: #a8a8a8;
+	--callout-default: 212, 178, 254;
+	--callout-info: 212, 178, 254;
+	--callout-todo: 212, 178, 254;
 	--text-normal: #e8e8e8;
 	--text-muted: #a8a8a8;
 	--text-faint: #7d7f8f;
