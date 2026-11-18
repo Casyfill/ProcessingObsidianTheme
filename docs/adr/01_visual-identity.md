@@ -159,6 +159,18 @@ No selector may target a translated `aria-label`.
 - **Callout radius:** `--callout-radius` is 14px, as round as the circle buttons.
 - **Light trial, replaces Amendment 2's values:** the note is `#F2F1EC` (paper) and the sidebars are `#D7DCE6` (stone slate). Both are more visibly off white and off blue than the first trial.
 
+## Amendment 4: all-blue headings, purple wikilinks, true circles, blue light mode
+
+- **Status:** requested by the owner on 2026-11-18 and implemented. The owner marks it Accepted.
+- **Headings, replaces Amendment 3's table:** blues only, getting darker as the level number rises. H1 is normal text and H2 is the bright accent in both modes.
+  - **Light:** H2 `#0564FF`, H3 `#0451CC`, H4 `#0A3FA0`, H5 `#0F2E7A`, H6 `#0F195A`. H2 is 4.3, which passes as large text; the rest are 6–14.
+  - **Dark:** H2 `#3884FF`, H3 `#2F6FE8` and H4 `#3A6CDB`, which pass as large text at 3.3 and 3.2. H5 and H6 cannot go darker and still be readable, so they recede by desaturating instead, to slate blue `#8E9CC4` and `#7F8FC0` (5.6 and 4.8).
+- **Wikilinks:** they are purple via `--link-color`, `#6A2FC4` in light and `#B48CFF` in dark. External links stay blue. The link swipe follows each link's own colour.
+- **Property keys:** these are darker blue via `--metadata-label-text-color`, `#0A3FA0` in light and `#8E9CC4` in dark.
+- **Dark callouts:** the default, info, todo, tip, summary and important types are light blue `130, 175, 255`, so there is no teal. Light callouts stay lilac.
+- **True circles:** the ribbon actions, sidebar tab icons, sidebar toggles and note-header buttons share one fixed `--circle-size` square box (26px) with a 50% radius. §6 gains `.sidebar-toggle-button .clickable-icon`.
+- **Light mode, replaces Amendment 3's trial:** the note is Processing light blue `#E8EFFF`, the colour the sidebars used to have. The sidebars are a deeper but still light blue, `#CDDBF7`.
+
 ## Consequences
 
 - **Size:** keeping to two families keeps the font payload to about 185 KB, and `theme.css` to about 220 KB. That is well under popular themes' 1–5 MB. Adding a family needs an amendment that justifies its size.
