@@ -51,7 +51,8 @@ body {
 	--link-decoration-hover: none;
 	--link-external-decoration: none;
 	--link-external-decoration-hover: none;
-	--link-swipe: color-mix(in srgb, var(--interactive-accent) 38%, transparent);
+	--link-swipe: color-mix(in srgb, currentcolor 38%, transparent); /* follows each link's colour */
+	--circle-size: 26px;
 }
 
 /* square caps and mitred joins on Obsidian's own icons only, so plugin
@@ -84,14 +85,17 @@ body {
 	--text-accent: #0458e0;
 	--text-accent-hover: #0251c8;
 	--text-on-accent: #fff;
-	--background-primary: #f2f1ec;
-	--background-secondary: #d7dce6;
+	--background-primary: #e8efff;
+	--background-secondary: #cddbf7;
 	--h1-color: var(--text-normal);
 	--h2-color: #0564ff;
-	--h3-color: #3e7209;
-	--h4-color: #00765a;
-	--h5-color: #7a3fd1;
-	--h6-color: #5f5f5f;
+	--h3-color: #0451cc;
+	--h4-color: #0a3fa0;
+	--h5-color: #0f2e7a;
+	--h6-color: #0f195a;
+	--link-color: #6a2fc4;
+	--link-color-hover: #5b2bb0;
+	--metadata-label-text-color: #0a3fa0;
 	--callout-default: 122, 63, 209;
 	--callout-info: 122, 63, 209;
 	--callout-todo: 122, 63, 209;
@@ -133,13 +137,19 @@ body {
 	--background-secondary: #16182a;
 	--h1-color: var(--text-normal);
 	--h2-color: #3884ff;
-	--h3-color: #58a10b;
-	--h4-color: #2de9b6;
-	--h5-color: #d4b2fe;
-	--h6-color: #a8a8a8;
-	--callout-default: 212, 178, 254;
-	--callout-info: 212, 178, 254;
-	--callout-todo: 212, 178, 254;
+	--h3-color: #2f6fe8;
+	--h4-color: #3a6cdb;
+	--h5-color: #8e9cc4;
+	--h6-color: #7f8fc0;
+	--link-color: #b48cff;
+	--link-color-hover: #c29dff;
+	--metadata-label-text-color: #8e9cc4;
+	--callout-default: 130, 175, 255;
+	--callout-info: 130, 175, 255;
+	--callout-todo: 130, 175, 255;
+	--callout-tip: 130, 175, 255;
+	--callout-summary: 130, 175, 255;
+	--callout-important: 130, 175, 255;
 	--text-normal: #e8e8e8;
 	--text-muted: #a8a8a8;
 	--text-faint: #7d7f8f;
@@ -215,18 +225,30 @@ body {
 
 /* 5. Circle buttons ================================================== */
 
+/* true circles, not ovals: a fixed square box with the icon centred */
+.workspace-ribbon .side-dock-ribbon-action,
+.mod-sidedock .workspace-tab-header .workspace-tab-header-inner,
+.sidebar-toggle-button .clickable-icon,
+.view-header-nav-buttons .clickable-icon,
+.view-actions .clickable-icon {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: var(--circle-size);
+	height: var(--circle-size);
+	margin: auto;
+	padding: 0;
+	border-radius: 50%;
+}
+
 /* ribbon actions: soft circles */
 .workspace-ribbon .side-dock-actions .side-dock-ribbon-action,
 .workspace-ribbon .side-dock-settings .side-dock-ribbon-action {
-	border-radius: 50%;
 	background-color: var(--bar-circle);
 }
 
-/* sidebar tab icons: smaller circles; the active one is filled */
-.mod-sidedock .workspace-tab-header .workspace-tab-header-inner {
-	border-radius: 50%;
-}
-
+/* sidebar tab icons: the active one is filled */
 .mod-sidedock .workspace-tab-header.is-active .workspace-tab-header-inner {
 	--icon-color: #fff;
 	--icon-color-hover: #fff;
@@ -237,7 +259,6 @@ body {
 /* note header (back, forward, reading view, more): outlined, no accent */
 .view-header-nav-buttons .clickable-icon,
 .view-actions .clickable-icon {
-	border-radius: 50%;
 	box-shadow: inset 0 0 0 1px var(--background-modifier-border-hover);
 }
 
