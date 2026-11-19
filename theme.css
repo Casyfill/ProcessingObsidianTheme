@@ -89,16 +89,19 @@ body {
 	--background-secondary: #cddbf7;
 	--h1-color: var(--text-normal);
 	--h2-color: #0564ff;
-	--h3-color: #0451cc;
-	--h4-color: #0a3fa0;
-	--h5-color: #0f2e7a;
-	--h6-color: #0f195a;
+	--h3-color: #4338ca;
+	--h4-color: #0f195a;
+	--h5-color: #4b5a82;
+	--h6-color: #5f5f5f;
 	--link-color: #6a2fc4;
 	--link-color-hover: #5b2bb0;
 	--metadata-label-text-color: #0a3fa0;
-	--callout-default: 122, 63, 209;
-	--callout-info: 122, 63, 209;
-	--callout-todo: 122, 63, 209;
+	--callout-default: 75, 42, 158;
+	--callout-info: 75, 42, 158;
+	--callout-todo: 75, 42, 158;
+	--callout-tip: 75, 42, 158;
+	--callout-summary: 75, 42, 158;
+	--callout-important: 75, 42, 158;
 	--text-normal: #1e1e1e;
 	--text-muted: #5f5f5f;
 	--text-faint: #8a8a8a;
@@ -108,8 +111,8 @@ body {
 	--bar-hover: rgb(255 255 255 / 9%);
 	--bar-circle: rgb(255 255 255 / 11%);
 	--bar-circle-active: #0564ff;
-	--text-selection: rgb(45 233 182 / 40%);
-	--text-highlight-bg: rgb(45 233 182 / 32%);
+	--text-selection: rgb(255 159 67 / 40%);
+	--text-highlight-bg: rgb(255 159 67 / 45%);
 	--code-background: #0f195a;
 	--graph-node: rgb(30 80 180 / 38%);
 	--graph-node-focused: rgb(5 100 255 / 60%);
@@ -137,19 +140,19 @@ body {
 	--background-secondary: #16182a;
 	--h1-color: var(--text-normal);
 	--h2-color: #3884ff;
-	--h3-color: #2f6fe8;
-	--h4-color: #3a6cdb;
-	--h5-color: #8e9cc4;
-	--h6-color: #7f8fc0;
+	--h3-color: #9d9dff;
+	--h4-color: #bfd3ff;
+	--h5-color: #7f8fc0;
+	--h6-color: #969696;
 	--link-color: #b48cff;
 	--link-color-hover: #c29dff;
 	--metadata-label-text-color: #8e9cc4;
-	--callout-default: 130, 175, 255;
-	--callout-info: 130, 175, 255;
-	--callout-todo: 130, 175, 255;
-	--callout-tip: 130, 175, 255;
-	--callout-summary: 130, 175, 255;
-	--callout-important: 130, 175, 255;
+	--callout-default: 90, 150, 255;
+	--callout-info: 90, 150, 255;
+	--callout-todo: 90, 150, 255;
+	--callout-tip: 90, 150, 255;
+	--callout-summary: 90, 150, 255;
+	--callout-important: 90, 150, 255;
 	--text-normal: #e8e8e8;
 	--text-muted: #a8a8a8;
 	--text-faint: #7d7f8f;
@@ -159,8 +162,8 @@ body {
 	--bar-hover: rgb(255 255 255 / 7%);
 	--bar-circle: rgb(255 255 255 / 8%);
 	--bar-circle-active: #3884ff;
-	--text-selection: rgb(45 233 182 / 28%);
-	--text-highlight-bg: rgb(45 233 182 / 24%);
+	--text-selection: rgb(255 159 67 / 30%);
+	--text-highlight-bg: rgb(255 159 67 / 35%);
 	--code-background: #0f1430;
 	--graph-node: rgb(130 175 255 / 36%);
 	--graph-node-focused: rgb(56 132 255 / 65%);
@@ -330,6 +333,11 @@ div[data-task="/"] .task-list-item-checkbox:checked::after,
 li[data-task="/"] > .task-list-item-checkbox:checked::after,
 li[data-task="/"] > p > .task-list-item-checkbox:checked::after {
 	display: none;
+}
+
+/* JSON-valued properties: blue instead of Obsidian's warning orange */
+.metadata-property-value .mod-unknown {
+	color: var(--text-accent);
 }
 
 /* property keys in small caps, like the old Processing reference */

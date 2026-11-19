@@ -171,6 +171,20 @@ No selector may target a translated `aria-label`.
 - **True circles:** the ribbon actions, sidebar tab icons, sidebar toggles and note-header buttons share one fixed `--circle-size` square box (26px) with a 50% radius. §6 gains `.sidebar-toggle-button .clickable-icon`.
 - **Light mode, replaces Amendment 3's trial:** the note is Processing light blue `#E8EFFF`, the colour the sidebars used to have. The sidebars are a deeper but still light blue, `#CDDBF7`.
 
+## Amendment 5: distinct headings, darker callouts, orange marker, blue JSON
+
+- **Status:** requested by the owner on 2026-11-19 and implemented. The owner marks it Accepted.
+- **Headings, replaces Amendment 4's H3–H6:** H2 is unchanged. The other levels change hue, not just shade, so each level is easy to tell apart.
+  - **Light:** H3 indigo `#4338CA`, H4 navy `#0F195A`, H5 steel `#4B5A82`, H6 muted `#5F5F5F`.
+  - **Dark:** H3 periwinkle `#9D9DFF`, H4 ice blue `#BFD3FF`, H5 slate `#7F8FC0`, H6 grey `#969696`.
+  - All pass 4.5:1.
+- **Callouts:** the default, info, todo, tip, summary and important types are darker in both modes. Light uses deep violet `75, 42, 158` (7.2 on its tint) and dark uses blue `90, 150, 255` (4.6).
+- **Marker, replaces §1's p5 mint:** orange `#FF9F43`.
+  - Light: highlight at 45% and selection at 40%.
+  - Dark: highlight at 35% and selection at 30%.
+  - Text on it stays at 11:1 or better in light and 6:1 or better in dark.
+- **JSON property values:** Obsidian colours these with `--text-warning` via `.metadata-property-value .mod-unknown`. They are recoloured to `--text-accent`, and this selector is added to §6. `--text-warning` itself is untouched, so real warnings stay orange.
+
 ## Consequences
 
 - **Size:** keeping to two families keeps the font payload to about 185 KB, and `theme.css` to about 220 KB. That is well under popular themes' 1–5 MB. Adding a family needs an amendment that justifies its size.
